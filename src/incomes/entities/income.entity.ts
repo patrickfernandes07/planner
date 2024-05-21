@@ -1,6 +1,7 @@
-import { Expense } from '@prisma/client';
+import { Income } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
-export class ExpenseEntity implements Expense {
+
+export class IncomeEntity implements Income {
   @ApiProperty()
   id: number;
 

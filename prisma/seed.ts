@@ -11,6 +11,7 @@ async function main() {
       value: parseFloat('10.50'),
       dueDate: new Date('2024-06-25T00:00:00Z'),
       payDate: null,
+      movementId: null,
     },
   });
   console.log(post1);

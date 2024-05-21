@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-export class CreateExpenseDto {
+
+export class CreateIncomeDto {
   @ApiProperty()
   value: number;
 
