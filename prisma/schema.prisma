@@ -13,32 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Expense {
-  id          Int      @id @default(autoincrement())
-  description String
-  value       Float
-  dueDate     DateTime
-  payDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  movementId  Int      @unique
-  movement    Movement  @relation(fields: [movementId], references: [id])
-}
-
-model Income {
-  id          Int      @id @default(autoincrement())
-  description String
-  value       Float
-  dueDate     DateTime
-  payDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  movementId  Int      @unique
-  movement    Movement  @relation(fields: [movementId], references: [id])
-}
-
 model Movement {
   id          Int      @id @default(autoincrement())
+  description String
+  value       Float
+  dueDate     DateTime
+  payDate     DateTime?
   contactId   Int      @unique
   contact     Contact  @relation(fields: [contactId], references: [id])
   entityId    Int      @unique
@@ -47,8 +27,6 @@ model Movement {
   account     Account  @relation(fields: [accountId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  income      Income?
-  expense     Expense?
 }
 
 

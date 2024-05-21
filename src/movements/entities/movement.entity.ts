@@ -6,6 +6,18 @@ export class MovementEntity implements Movement {
   id: number;
 
   @ApiProperty()
+  value: number;
+
+  @ApiProperty()
+  description: string;
+
+  @ApiProperty()
+  dueDate: Date;
+
+  @ApiProperty({ required: false, nullable: true })
+  payDate: Date;
+
+  @ApiProperty()
   accountId: number;
 
   @ApiProperty()
