@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
@@ -32,19 +33,22 @@ export class ContactsController {
 
   @Get(':id')
   @ApiOkResponse({ type: ContactEntity })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.contactsService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: ContactEntity })
-  update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateContactDto: UpdateContactDto,
+  ) {
     return this.contactsService.update(+id, updateContactDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: ContactEntity })
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.contactsService.remove(+id);
   }
 }

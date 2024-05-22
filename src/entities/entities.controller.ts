@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { EntitiesService } from './entities.service';
 import { CreateEntityDto } from './dto/create-entity.dto';
@@ -32,19 +33,22 @@ export class EntitiesController {
 
   @Get(':id')
   @ApiOkResponse({ type: EntityEntity })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.entitiesService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: EntityEntity })
-  update(@Param('id') id: string, @Body() updateEntityDto: UpdateEntityDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateEntityDto: UpdateEntityDto,
+  ) {
     return this.entitiesService.update(+id, updateEntityDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: EntityEntity })
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.entitiesService.remove(+id);
   }
 }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { MovementsService } from './movements.service';
 import { CreateMovementDto } from './dto/create-movement.dto';
@@ -32,22 +33,22 @@ export class MovementsController {
 
   @Get(':id')
   @ApiOkResponse({ type: MovementEntity })
-  findOne(@Param('id') id: string) {
-    return this.movementsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.movementsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: MovementEntity })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateMovementDto: UpdateMovementDto,
   ) {
-    return this.movementsService.update(+id, updateMovementDto);
+    return this.movementsService.update(id, updateMovementDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: MovementEntity })
-  remove(@Param('id') id: string) {
-    return this.movementsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.movementsService.remove(id);
   }
 }

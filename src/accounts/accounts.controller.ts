@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
@@ -32,19 +33,22 @@ export class AccountsController {
 
   @Get(':id')
   @ApiOkResponse({ type: AccountEntity })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.accountsService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: AccountEntity })
-  update(@Param('id') id: string, @Body() updateAccountDto: UpdateAccountDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateAccountDto: UpdateAccountDto,
+  ) {
     return this.accountsService.update(+id, updateAccountDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: AccountEntity })
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.accountsService.remove(+id);
   }
 }
