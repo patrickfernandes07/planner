@@ -30,15 +30,15 @@ export class CreateMovementDto {
   @ApiProperty({ required: null, nullable: true })
   payDate?: Date = null;
 
-  @IsOptional()
   @ApiProperty()
   accountId: number;
 
-  @IsOptional()
   @ApiProperty()
   contactId: number;
 
-  @IsOptional()
   @ApiProperty()
   entityId: number;
+
+  @ApiProperty()
+  userId: number;
 }

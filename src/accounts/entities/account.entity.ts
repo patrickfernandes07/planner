@@ -9,6 +9,9 @@ export class AccountEntity implements Account {
   name: string;
 
   @ApiProperty()
+  entityId: number;
+
+  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()

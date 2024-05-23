@@ -6,6 +6,7 @@ import { MovementsModule } from './movements/movements.module';
 import { EntitiesModule } from './entities/entities.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AccountsModule } from './accounts/accounts.module';
     EntitiesModule,
     ContactsModule,
     AccountsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

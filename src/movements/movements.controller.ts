@@ -21,34 +21,39 @@ export class MovementsController {
 
   @Post()
   @ApiCreatedResponse({ type: MovementEntity })
-  create(@Body() createMovementDto: CreateMovementDto) {
-    return this.movementsService.create(createMovementDto);
+  async create(@Body() createMovementDto: CreateMovementDto) {
+    return new MovementEntity(
+      await this.movementsService.create(createMovementDto),
+    );
   }
 
   @Get()
   @ApiOkResponse({ type: MovementEntity, isArray: true })
-  findAll() {
-    return this.movementsService.findAll();
+  async findAll() {
+    const movements = await this.movementsService.findAll();
+    return movements.map((movement) => new MovementEntity(movement));
   }
 
   @Get(':id')
   @ApiOkResponse({ type: MovementEntity })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.movementsService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return new MovementEntity(await this.movementsService.findOne(id));
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: MovementEntity })
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateMovementDto: UpdateMovementDto,
   ) {
-    return this.movementsService.update(id, updateMovementDto);
+    return new MovementEntity(
+      await this.movementsService.update(id, updateMovementDto),
+    );
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: MovementEntity })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.movementsService.remove(id);
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return new MovementEntity(await this.movementsService.remove(id));
   }
 }

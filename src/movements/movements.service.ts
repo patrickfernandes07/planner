@@ -16,7 +16,12 @@ export class MovementsService {
   }
 
   findOne(id: number) {
-    return this.prisma.movement.findUnique({ where: { id } });
+    return this.prisma.movement.findUnique({
+      where: { id },
+      include: {
+        user: true,
+      },
+    });
   }
 
   update(id: number, updateMovementDto: UpdateMovementDto) {

@@ -9,6 +9,9 @@ export class ContactEntity implements Contact {
   name: string;
 
   @ApiProperty()
+  entityId: number;
+
+  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()

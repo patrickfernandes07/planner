@@ -8,4 +8,7 @@ export class CreateContactDto {
   @MaxLength(200)
   @ApiProperty()
   name: string;
+
+  @ApiProperty()
+  entityId: number;
 }
